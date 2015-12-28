@@ -19,27 +19,6 @@ Methods = {
 
     Session.set('getRequests',getRequests_default);
 
-MyDocumentsController = AppController.extend({
-    onBeforeAction: function () {
-        console.log('app before hook!');
-        this.next();
-    },
-
-    action: function () {
-        console.log('Method action');
-        if (!(Meteor.user() || Meteor.loggingIn())) {
-            this.redirect('/');
-        } else if (Meteor.user()) {
-            console.log("SDFSDF")
-            Session.set('Template','A_requests');
-            this.render();
-
-        }
-    }
-
-
-});
-
   RequestsController = AppController.extend({
         // template: 'home',
 
@@ -55,8 +34,12 @@ MyDocumentsController = AppController.extend({
         onRun: function () {
             console.log('Method onRun');
 
-
-            this.next();
+            if (!(Meteor.user() || Meteor.loggingIn())) {
+                this.redirect('/');
+            }
+            else{
+                this.next();
+            }
         },
 
         /**
@@ -85,15 +68,10 @@ MyDocumentsController = AppController.extend({
             this.next();
         },
 
-        index: function () {
+        action: function () {
             console.log('Method action');
-            if (!(Meteor.user() || Meteor.loggingIn())) {
-                this.redirect('/');
-            } else if (Meteor.user()) {
-                Session.set('Template','A_requests');
-                this.render();
-
-            }
+            Session.set('Template','A_requests');
+            this.render();
         },
 
         /**
@@ -106,13 +84,6 @@ MyDocumentsController = AppController.extend({
         },
 
         after: function () {
-            if (!(Meteor.user() || Meteor.loggingIn())) {
-                this.render('Land_1');
-            } else if (Meteor.user()) {
-                Session.set('Template','A_requests');
-                this.render('A_requests');
-
-            }
             console.log('Method after');
         },
 
@@ -180,9 +151,7 @@ MyDocumentsController = AppController.extend({
             if (!err){
                 Session.set('RequestsTotalPages', totalPages)
             }
-        })
-
-        console.log(getRequests)
+        });
 
         Meteor.subscribe('requests', getRequests)
 
@@ -243,40 +212,8 @@ MyDocumentsController = AppController.extend({
     selectedRequest: function () {
       return Requests.findOne(Session.get("request_selected").id);
     },
-    searchClients: function () {
-      var to_search =  Session.get('to_search_client');
-
-      if (to_search.length < 3)
-      {
-        Session.set('client_selected',null);
-        return null;
-      }
-
-      var regExp = buildRegExp(to_search);
-
-      var found = Clients.find({$or:
-            [
-                {
-                    contacts: {
-                        $elemMatch: {
-                            content: regExp
-                        }
-                    }
-                },
-                {
-                    info: {
-                        $elemMatch: {
-                            content: regExp
-                        }
-                    }
-                }
-            ]}).fetch();
-      if (found)   {
-            Session.set('clients_found_n',found.length)
-        }
-
-      return found;
-            //.fetch();
+    findClients:function(){
+      return Session.get('clients_found')
     },
     isrole:function(){
 
@@ -374,6 +311,21 @@ MyDocumentsController = AppController.extend({
     'keyup .attach-request': function (event,template) {
         var to_search = event.target.value;
         Session.set('to_search_client',to_search);
+
+        if (to_search.length < 3)
+        {
+            Session.set('client_selected',null);
+            return null;
+        }
+
+        var find = Meteor.call('SearchClients', to_search, function(err,found){
+            if (found){
+                Session.set('clients_found',found)
+
+            }
+        });
+
+
         var parts = to_search.trim().split(/[ \-\:]+/);
         setTimeout(function(){
             $('.client-item').unhighlight();
@@ -410,15 +362,15 @@ MyDocumentsController = AppController.extend({
       update: function(doc) {
         // Potentially alter the doc
         // console.log(doc);
-          var client_selected = Session.get('client_selected');
-          if (client_selected) { client_selected = client_selected.id }
-          if (client_selected) { client_selected = Clients.findOne(client_selected) };
+        var client_selected = Session.get('client_selected');
+        if (client_selected) { client_selected = client_selected.id }
+        if (client_selected) { client_selected = Clients.findOne(client_selected) };
 
         var that = this;
 
         if (client_selected) {
 
-         var updater = { $addToSet:
+        var updater = { $addToSet:
             {
              "requests" : {
                  "id" : this.docId,
@@ -426,9 +378,9 @@ MyDocumentsController = AppController.extend({
                 },
              "status" : "Горячие"
             }
-         };
+        };
 
-            Clients.update(client_selected._id,updater,function(err,newid)
+        Clients.update(client_selected._id,updater,function(err,newid)
             {
                 if ((!err) && (newid))
                 {

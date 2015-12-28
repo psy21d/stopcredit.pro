@@ -50,7 +50,6 @@ UI.registerHelper('addedFormatted',function(timestamp) {
 });
 
 UI.registerHelper('checkOpsos',function(phone) {
-    return false;
     var re_p = /([0-9]+).*?([0-9]+).*?([0-9]+).*?([0-9]+).*?([0-9]+).*?([0-9]+).*?/;
     var match = re_p.exec(phone);
     match[0]="";

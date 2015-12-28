@@ -20,6 +20,22 @@
                                     <h3>Клиенты</h3>
 
                                         {{#if isrole}}
+
+                                            <h4>  Фильтровать по менеджеру
+
+                                                <span>
+                                                    <select class="filter_manager">
+                                                        <option value="">Все клиенты</option>
+                                                        {{#with managers}}
+                                                            {{#each list_managers}}
+                                                                <option selected value="{{_id}}" name="{{profile.fio}}"> {{profile.fio}} </option>
+                                                            {{/each}}
+                                                        {{/with}}
+
+                                                    </select>
+                                                </span>
+                                            </h4>
+                                            <br/>
                                             {{#if manager}}
                                             <h4>Ведёт менеджер: {{manager}}
 
@@ -52,22 +68,25 @@
                                      {{/if}}
                                     {{/if}}
 
-                                    <label class="checkbox-inline">
-                                        <input type="radio" name="optionsRadios" class="status_client" value="" checked>
-                                        Все клиенты
-                                    </label>
-
                                     <label class="checkbox-inline" title="В работе">
                                         <input type="radio" name="optionsRadios" class="status_client" value="Категория 3" checked>
                                         Категория 3
                                     </label>
                                     <label class="checkbox-inline" title="Встречи">
-                                        <input type="radio" name="optionsRadios" class="status_client" value="Категория 2" checked>
+                                        <input type="radio" name="optionsRadios" class="status_client" value="Категория 2">
                                         Категория 2
                                     </label>
                                     <label title="Заключение договора" class="checkbox-inline">
-                                        <input type="radio" name="optionsRadios" class="status_client" value="Категория 1" checked>
+                                        <input type="radio" name="optionsRadios" class="status_client" value="Категория 1">
                                         Категория 1
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="radio" name="optionsRadios" class="status_client" value="">
+                                        Все клиенты
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="radio" name="optionsRadios" class="status_client" value="Категория 4">
+                                        Категория 4
                                     </label>
 
                                 </div>
@@ -294,6 +313,7 @@
                                             <option value="Категория 3">Категория 3</option>
                                             <option value="Категория 2" >Категория 2</option>
                                             <option value="Категория 1">Категория 1</option>
+                                            <option value="Категория 4">Категория 4</option>
                                         </select>
                                     </div>
 

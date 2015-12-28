@@ -1,3 +1,8 @@
+buildRegExp = function(searchText) {
+    // this is a dumb implementation
+    var parts = searchText.trim().split(/[ \-\:]+/);
+    return new RegExp("(" + parts.join('|') + ")", "ig");
+};
 
 Meteor.methods({
     AddManager: function (doc) {
@@ -27,5 +32,28 @@ Meteor.methods({
     },
     totalCountRequests: function(query) {
         return Requests.find(query).count();
+    },
+    SearchClients : function(query){
+        var regExp = buildRegExp(query);
+
+        var find = Clients.find({$or:
+            [
+                {
+                    contacts: {
+                        $elemMatch: {
+                            content: regExp
+                        }
+                    }
+                },
+                {
+                    info: {
+                        $elemMatch: {
+                            content: regExp
+                        }
+                    }
+                }
+        ]}).fetch();
+
+        return find
     }
 });

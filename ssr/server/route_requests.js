@@ -13,6 +13,9 @@ Router.map(function() {
             }
             ;
 
+
+            this.response.setHeader('access-control-allow-origin', '*');
+
             try {
                 var body = JSON.parse(this.request.body.form);
             }

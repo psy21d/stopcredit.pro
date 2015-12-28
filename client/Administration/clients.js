@@ -2,14 +2,14 @@ var getClients_default = {
     find:{
         status:"new"
     }
-}
+};
 
     ClientsController = AppController.extend({
         // template: 'home',
 
         // layoutTemplate: 'layout',
         waitOn: function () {
-            Session.set('clientsRequests',getClients_default)
+            Session.set('clientsRequests',getClients_default);
 
             return Meteor.subscribe('clients', getClients_default);
         },
@@ -20,7 +20,13 @@ var getClients_default = {
          */
         onRun: function () {
             console.log('Method onRun');
-            this.next();
+            if (!(Meteor.user() || Meteor.loggingIn())) {
+                this.redirect('/');
+            }
+            else{
+                this.next();
+            }
+
         },
 
         /**
@@ -41,6 +47,7 @@ var getClients_default = {
          * your action function will not be called.
          */
         onBeforeAction: function () {
+
             this.next();
         },
 
@@ -49,15 +56,8 @@ var getClients_default = {
         },
 
         action: function () {
-
-            if (!(Meteor.user() || Meteor.loggingIn())) {
-                this.redirect('/');
-                //this.next();
-            } else if (Meteor.user()) {
-                Session.set('Template','A_clients')
-                this.render();
-                //this.next();
-            }
+            Session.set('Template','A_clients');
+            this.render();
         },
 
         /**
@@ -100,7 +100,7 @@ var getClients_default = {
             console.log('');
             // this.next();
             return '';
-        },
+        }
 
     });
 
@@ -117,11 +117,17 @@ Template.A_clients.helpers({
 
     },
     manager:function(){
-        var owner_client = Session.get('Owner_client')
+        var owner_client = Session.get('Owner_client');
         if (owner_client){
-            var result = Meteor.users.findOne({"_id":owner_client})
+            var result = Meteor.users.findOne({"_id":owner_client});
             if (result.profile){
-                return result.profile.fio
+                if (result.profile.fio){
+                    return result.profile.fio
+                }
+                else {
+                    return "Администратор"
+                }
+
             }
             else if (result){
                 return "Администратор"
@@ -171,9 +177,16 @@ Template.A_clients.helpers({
             "$and":[]
         }
         var to_search =  Session.get('to_search_client');
-        var status = Session.get('status_client')
+        var status = Session.get('status_client');
         if (status){
             query["$and"].push({status:status})
+        }
+
+        var filter = Session.get('clients_filter')
+        if (filter){
+            if (filter.filter.manager != ""){
+                query["owner"] = filter.filter.manager
+            }
         }
 
         var start = 0;
@@ -191,6 +204,7 @@ Template.A_clients.helpers({
                 { added: { $gte: start } },
                 { added: { $lte: end   } }
             )
+            console.log(query)
             return Clients.find(query);
         }
 
@@ -254,6 +268,19 @@ Template.A_clients.helpers({
 });
 
 Template.A_clients.events({
+    'change .filter_manager':function(event, template){
+        var ManagerId = $(event.target).val();
+
+        var filter = {
+            filter:{
+                manager:ManagerId
+            }
+        }
+
+        Session.set('clients_filter', filter );
+
+
+    },
     'change .list_managers' : function(event,template){
 
         var ManagerId = $(event.target).val();
