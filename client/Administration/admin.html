@@ -1,0 +1,21 @@
+<template name="admin">
+    <head>
+        {{> charset}}
+        {{> fonts}}
+        {{> a_css}}
+        <title>Администрирование</title>
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        {{#if clients}}
+            {{> A_clients}}
+        {{/if}}
+
+
+        {{#if requests}}
+            {{>A_requests}}
+        {{/if}}
+
+    </body>
+
+</template>

@@ -1,0 +1,362 @@
+<template name="A_clients">
+    <title>Администрирование</title>
+
+    <div class="">
+        <div class="">
+
+            <div class="col-lg-12">
+
+                {{> errors}}
+
+                <!-- TOP NAVBAR -->
+
+                {{> upmenu}}
+
+                    <!-- Current manager -->
+                    <div class="container-fluid">
+
+                            <div class="block-flat" style="margin-bottom: 0px;">
+                                <div class="header">
+                                    <h3>Клиенты</h3>
+
+                                        {{#if isrole}}
+                                            {{#if manager}}
+                                            <h4>Ведёт менеджер: {{manager}}
+
+                                            <span>
+
+                                                <select class="list_managers" name="list_managers">
+                                                    {{#with managers}}
+
+                                                        <option></option>
+                                                        {{#each current_manager}}
+
+                                                            {{#if selected}}
+                                                                <option selected value="{{_id}}" name="{{profile.fio}}"> {{profile.fio}} </option>
+                                                            {{else}}
+                                                                <option value="{{_id}}" name="{{profile.fio}}"> {{profile.fio}}  </option>
+                                                            {{/if}}
+
+
+                                                        {{/each}}
+
+
+
+                                                    {{/with}}
+
+                                                </select>
+
+                                            </span>
+
+                                        </h4>
+                                     {{/if}}
+                                    {{/if}}
+
+                                    <label class="checkbox-inline">
+                                        <input type="radio" name="optionsRadios" class="status_client" value="" checked>
+                                        Все клиенты
+                                    </label>
+
+                                    <label class="checkbox-inline" title="В работе">
+                                        <input type="radio" name="optionsRadios" class="status_client" value="Категория 3" checked>
+                                        Категория 3
+                                    </label>
+                                    <label class="checkbox-inline" title="Встречи">
+                                        <input type="radio" name="optionsRadios" class="status_client" value="Категория 2" checked>
+                                        Категория 2
+                                    </label>
+                                    <label title="Заключение договора" class="checkbox-inline">
+                                        <input type="radio" name="optionsRadios" class="status_client" value="Категория 1" checked>
+                                        Категория 1
+                                    </label>
+
+                                </div>
+                    </div>
+                    </div>
+
+                    <div class="container-fluid">
+                    <div class="row">
+
+                        <!--<table class="table table-hover">-->
+                            <!--<thead>-->
+                                <!--<tr>-->
+                                    <!--<th style="font-weight: bold">ФИО</th>-->
+                                    <!--<th style="font-weight: bold">Телефон</th>-->
+                                    <!--<th style="font-weight: bold" class="text-left">Дата</th>-->
+                                <!--</tr>-->
+                            <!--</thead>-->
+
+                            <!--<tbody>-->
+                                <!--{{#each clients}}-->
+                                    <!--<tr class="client-item {{#if clients_is_selected}}row-selected solid-border{{/if}}" role="info">-->
+                                        <!--<td>{{#each finditem info 'fio'}}{{content}}<br>{{/each}}</td>-->
+                                        <!--<td>{{#each finditem contacts 'phone'}}{{content}}<br>{{/each}}</td>-->
+                                        <!--<td class="text-left color-success">{{#with addedFormatted added}}-->
+                                            <!--{{date}}<br>{{time}}-->
+                                        <!--{{/with}}</td>-->
+                                    <!--</tr>-->
+                                <!--{{/each}}-->
+                            <!--</tbody>-->
+
+                        <!--</table>-->
+
+                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="content">
+                                <input type="text" id="client_search_input" class="search_input" title="Поиск по клиентам">
+                                <div class="enable_calendar">{{client_dates}}</div>
+                                <div class="pick_calendar_clients" style="display:none"></div>
+                                    <table class="table hover">
+                                        <thead class="no-border">
+                                        <tr>
+                                            <th style="font-weight: bold">ФИО</th>
+                                            <th style="font-weight: bold">Телефон</th>
+                                            <th style="font-weight: bold" class="text-left">Дата</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="no-border-y">
+                                        {{#each clients}}
+                                            <tr class="client-item {{#if clients_is_selected}}row-selected solid-border{{/if}}" role="info">
+                                                <td>{{#each finditem info 'fio'}}{{content}}<br>{{/each}}</td>
+                                                <td>{{#each finditem contacts 'phone'}}{{content}}<br>{{/each}}</td>
+                                                <td class="text-left color-success">{{#with addedFormatted added}}
+                                                    {{date}}<br>{{time}}
+                                                {{/with}}</td>
+                                            </tr>
+                                        {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                            {{#with selectedClient}}
+                                <div class="infoblock">
+                                    <div class="infoblock-header">
+                                        Личные данные
+                                    </div>
+                                    {{#each indexed info _source="info"}}
+                                        <div class="line">
+                                            <div class="line_item line_index">
+                                                {{_index}}
+                                            </div>
+                                            <div class="line_item">
+                                                <input type="text" class="input_line_type" item="info" i="{{_index}}"  value="{{type}}">
+                                            </div>
+                                            <div class="line_item">
+                                                <input type="text" class="input_line_content" item="info" i="{{_index}}"  value="{{content}}">
+                                            </div>
+                                            <div class="line_item">
+                                                <button class="btn-success btn-rad button_ok" item="info" >Ок</button>
+                                            </div>
+                                            <div class="line_item">
+                                                <button class="btn-danger btn-rad button_del" item="info" >Del</button>
+                                            </div>
+                                        </div>
+                                    {{/each}}
+                                        <div class="line">
+                                            <div class="line_item line_index">
+                                                +
+                                            </div>
+                                            <div class="line_item">
+                                                <input type="text" class="input_line_type" action="add" item="info" value="">
+                                            </div>
+                                            <div class="line_item">
+                                                <input type="text" class="input_line_content" action="add" item="info" value="">
+                                            </div>
+                                            <div class="line_item">
+                                                <button class="btn-primary btn-rad button_add_item" item="info">Добавить</button>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                <div class="infoblock">
+                                    <div class="infoblock-header">
+                                        Контакты
+                                    </div>
+                                    {{#each indexed contacts _source="contacts"}}
+                                        <div class="line">
+                                            <div class="line_item line_index">
+                                                {{_index}}
+                                            </div>
+                                            <div class="line_item">
+                                                <input type="text" class="input_line_type" item="contacts" i="{{_index}}" value="{{type}}">
+                                            </div>
+                                            <div class="line_item">
+                                                <input type="text" class="input_line_content" item="contacts" i="{{_index}}" value="{{content}}">
+                                            </div>
+                                            <div class="line_item">
+                                                <button class="btn-success btn-rad button_ok" item="contacts">Ок</button>
+                                            </div>
+                                            <div class="line_item">
+                                                <button class="btn-danger btn-rad button_del" item="contacts">Del</button>
+                                            </div>
+                                        </div>
+                                    {{/each}}
+                                    <div class="line">
+                                        <div class="line_item line_index">
+                                            +
+                                        </div>
+                                        <div class="line_item">
+                                            <input type="text" class="input_line_type" item="contacts" action="add" value="">
+                                        </div>
+                                        <div class="line_item">
+                                            <input type="text" class="input_line_content" item="contacts" action="add" value="">
+                                        </div>
+                                        <div class="line_item">
+                                            <button class="btn-primary btn-rad  button_add_item" item="contacts">Добавить</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="infoblock">
+                                    <div class="infoblock-header">
+                                        Заявки
+                                    </div>
+                                    {{#each requests}}
+                                    {{#with request}}
+                                    <div class="line_bordered">
+                                        <div class="line">
+                                            <div class="line_item item_bordered" title="Имя">
+                                                {{name}}
+                                            </div>
+                                            <div class="line_item item_bordered" title="Телефон">
+                                                {{phone}}
+                                            </div>
+                                            {{#with addedFormatted added}}
+                                            <div class="line_item item_bordered" title="Дата">
+                                                {{date}}
+                                            </div>
+                                            <div class="line_item item_bordered" title="Комментарий">
+                                                {{time}}
+                                            </div>
+                                            {{/with}}
+                                        </div>
+                                        {{#if comments}}
+                                            <div class="line item_bordered">
+                                                {{comments}}
+                                            </div>
+                                        {{/if}}
+                                    </div>
+                                    {{/with}}
+                                    {{/each}}
+                                    <div class="line">
+                                        <div class="line_item">
+                                            <button class="btn-primary btn-rad button_add_">Добавить</button>
+                                        </div>
+                                </div>
+                                </div>
+
+                                <div class="infoblock">
+                                    <div class="infoblock-header">
+                                        Статус клиента и комментарии
+                                    </div>
+                                    <div class="line_bordered">
+                                        <div class="line_item line_index">
+                                            Текущий статус:
+                                        </div>
+                                        <div class="line_item line_index">
+                                            {{status}}
+                                        </div>
+                                    </div>
+
+                                    {{#each commentaries}}
+                                    {{#if content}}
+                                    <div class="line_bordered">
+                                    <div class="line" title="{{owner}}">
+                                        <div class="line_item item_bordered">
+                                            {{#with addedFormatted added}}{{date}}<br>{{time}}{{/with}}
+                                        </div>
+                                        <div class="line_item item_bordered">
+                                            {{content}}
+                                        </div>
+                                        {{#if show_systems_commentaries}}
+                                        <div class="line_item item_bordered">
+                                            {{system}}
+                                        </div>
+                                        {{/if}}
+
+                                    </div>
+                                    </div>
+                                    {{/if}}
+                                    {{/each}}
+                                </div>
+
+                                <div class="infoblock">
+                                    <div class="infoblock-header">
+                                        Изменить статус и <br>добавить комментарий
+                                    </div>
+                                <div class="line">
+
+                                    <div class="line_item">
+                                        <select id="client_new_status">
+                                            <option value="{{status}}" disabled="disabled" selected="selected">{{status}}</option>
+                                            <option value="Категория 3">Категория 3</option>
+                                            <option value="Категория 2" >Категория 2</option>
+                                            <option value="Категория 1">Категория 1</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="line_item">
+                                        <button class="btn-success btn-rad button_status" item="status" >Подтвердить</button>
+                                    </div>
+                                </div>
+                                    <div class="line">
+                                        <div class="line_item">
+                                        <textarea id="client_new_comments" type="text" class="input_area" item="status" ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="line">
+                                        <div class="line_item">
+                                            <button class="btn-success btn-rad button_status" item="status" >Подтвердить</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="infoblock">
+                                    <div class="infoblock-header">
+                                        Выплаты
+                                    </div>
+                                    <div class="line">
+                                        <div class="line_item line_index">
+                                            <input type="text" class="input_line_content" id="pay" value="">
+                                        </div>
+                                        <div class="line_item">
+                                            <button class="btn-primary btn-rad button_pay">Клиент оплатил</button>
+                                        </div>
+                                    </div>
+                                {{#each rewards}}
+                                    <div class="line_bordered" title="{{owner}}" >
+                                        <div class="line_item line_index" title="Оплатил клиент">
+                                            {{sum}}
+                                        </div>
+                                        <div class="line_item" title="Дата">
+                                            {{#with addedFormatted added}}{{date}}<br>{{time}}{{/with}}
+                                        </div>
+                                        {{#if out_profit}}
+                                            <div class="line_item line_index" title="Вознаграждение">
+                                                {{out_profit}}
+                                            </div>
+                                            <div class="line_item" title="Дата">
+                                                {{#with addedFormatted out_profit_date}}{{date}}<br>{{time}}{{/with}}
+                                            </div>
+                                        {{/if}}
+                                    </div>
+                                {{/each}}
+                                </div>
+
+                            {{/with}}
+                            </div>
+
+
+                    </div>
+
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+</template>

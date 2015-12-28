@@ -1,0 +1,879 @@
+<template name="Request_form_1">
+    <div class="modal ext_b_block Request_form_1" style="width: 350px; height:440px; padding: 0px; position: fixed; top: 50%; left: 50%; margin-left: -175px; margin-top: -164px;">
+        <a class="close"></a>
+        <div class="modal_form">
+            <div class="form">
+
+                <div class="form_title">Как действовать?</div>
+                <div class="form_data">
+                    {{#autoForm id="Request_form_1_form" type="insert" schema=Schemas.Requests collection=Collections.Requests resetOnSuccess=true}}
+
+                        <div class="form_fields">
+
+                            <div class="form_field" data-type="text">
+                                <label class="form_1_label">
+                                    <div class="field_title">Имя:<i>*</i></div>
+                                    {{> afFieldInput name='name' class='form_field_text'}}
+                                    <div class="error">&nbsp;
+                                        {{#if afFieldIsInvalid name='name'}}
+                                            Укажите ваше имя
+                                        {{/if}}
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="form_field" data-type="text">
+                                <label class="form_1_label">
+                                    <div class="field_title">Телефон:<i>*</i></div>
+                                    {{> afFieldInput name='phone' class='form_field_text'}}
+                                    <div class="error">&nbsp;
+                                        {{#if afFieldIsInvalid name='phone'}}
+                                            Оставьте номер, мы вам перезвоним
+                                        {{/if}}
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="form_field" data-type="text">
+                                <label class="form_1_label">
+                                    <div class="field_title">Комментарии:</div>
+                                    {{> afFieldInput name='comments' class='form_field_text'}}
+                                    <div class="error">&nbsp;
+                                        {{#if afFieldIsInvalid name='comments'}}
+                                            Некорректный комментарий. Оставьте поле пустым.
+                                        {{/if}}
+                                    </div>
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="form_submit">
+                            <button type="submit" class="transparent">
+                                <a class="form_field_submit orange"><div><span>Узнайте, как действовать</span></div></a>
+                            </button>
+                        </div>
+                    {{/autoForm}}
+                </div>
+                <div class="form_bottom">Мы не передаем Вашу персональную информацию третьим лицам</div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="Request_form_1_inland">
+    <div class="form">
+        <div class="form_title">Узнайте решение</div>
+        <div class="form_title_2"><div></div>узнайте, как СОХРАНИТЬ СВОИ СРЕДСТВА ОТ ПЕНЕЙ, ШТРАФОВ И ПРОЦЕНТОВ, <br>А СЕБЯ ОТ НАЗОЙЛИВЫХ ЗВОНКОВ<div></div>
+        </div>
+        <div class="form_data">
+            {{#autoForm id="Request_form_1_inland_form" type="insert" schema=Schemas.Requests collection=Collections.Requests resetOnSuccess=true}}
+                <input type="hidden" name="name" value="Заявка">
+                <div class="form_fields">
+
+                    <div class="form_field" data-type="text">
+                        <label class="form_1_label">
+                            <div class="field_title">Имя:<i>*</i></div>
+                            {{> afFieldInput name='name' class='form_field_text'}}
+                            <div class="error">&nbsp;
+                                {{#if afFieldIsInvalid name='name'}}
+                                    Укажите ваше имя
+                                {{/if}}
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="form_field" data-type="text">
+                        <label class="form_1_label">
+                            <div class="field_title">Телефон:<i>*</i></div>
+                            {{> afFieldInput name='phone' class='form_field_text'}}
+                            <div class="error">&nbsp;
+                                {{#if afFieldIsInvalid name='phone'}}
+                                    Оставьте номер, мы вам перезвоним
+                                {{/if}}
+                            </div>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="form_submit">
+                    <button type="submit" class="transparent">
+                        <a class="form_field_submit orange"><div><span>Узнайте, как действовать</span></div></a>
+                    </button>
+                </div>
+            {{/autoForm}}
+        </div>
+        <div class="form_bottom">Мы не передаем Вашу персональную информацию третьим лицам, гарантируем абсолютную конфиденциальность&nbsp;
+        </div>
+    </div>
+</template>
+
+<template name="Request_form_1_thanks">
+    <div class="modal ext_b_block Request_form_1_thanks" style="width: 350px; height: 200px;  padding: 0px; position: fixed; top: 50%; left: 50%; margin-left: -175px; margin-top: -93px;" data-id="95469" data-b-id="17">
+        <a class="close"></a>
+        <div class="modal_form_done"><div class="form_done">
+            <div class="form_done_title">Спасибо!</div>
+            <div class="form_done_text">Наш менеджер свяжется с Вами в ближайшее время. Подготовьте документы, договора с банками.<br>
+            </div>
+        </div></div></div>
+</template>
+
+<template name="Land_1">
+    {{{getDocType}}}
+    {{{getCharSet}}}
+
+    {{{getKeyWords}}}
+
+    <body>
+
+    <style type="text/css">
+            {{getCSS}}
+    </style>
+
+
+
+    <div class="container-list">
+        <div class="b_block b_95469" data-id="95469" data-b-id="17"><div class="container-fluid"><div class="container">
+            <div class="span6">
+                <div class="logo">
+
+                    <div class="company_name" style="color:#e6410e;font-size:26px;font-family:Arial;font-weight:bold;font-style:normal;">Раскредитование</div>
+
+                </div>
+
+                <div class="desc"><p>Свобода от кредитного рабства<br></p>
+                </div>
+
+            </div>
+            <div class="span6 span_ico">
+                <div class="ico_wrap ico_1">
+                    <div class="ico" style="background-image: url('/_app/ico/85.png');"></div>
+                    <div class="ico_name"><div>СОХРАНИМ<br></div><div>ВАШИ <br>ДЕНЬГИ<br></div>
+                    </div>
+                </div>
+                <div class="ico_wrap ico_2">
+                    <div class="ico" style="background-image: url('/_app/ico/65.png');"></div>
+                    <div class="ico_name"><div>ПРОФЕССИОНАЛЬНАЯ</div>ЮРИДИЧЕСКАЯ<div>КОНСУЛЬТАЦИЯ<br></div>
+                    </div>
+                </div>
+                <div class="ico_wrap ico_3">
+                    <div class="ico" style="background-image: url('/_app/ico/209.png');"></div>
+                    <div class="ico_name">КОНФИДЕНЦИАЛЬНО<div>БЫСТРО<br>ЗАКОННО<br></div>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+            <div class="span4">
+                <div class="phone">8 (812) 385 54 65
+                </div>
+
+                <div class="span_btn">
+                    <div class="btn_wrap"><a class="btn" style="background-color: #e6410e;">Получить консультацию</a></div>
+                </div>
+
+            </div>
+        </div>
+
+
+        </div></div> <div class="b_block b_54630" data-id="54630" data-b-id="2"><div class="container-fluid"><div class="dark">
+        <div class="container">
+            <div class="span10">
+                <div class="title_1">
+                    <ul>
+
+                        <li>погаси</li>
+
+                        <li>пожар</li>
+
+                        <li>кредитов</li>
+
+                    </ul>
+                </div>
+                <div class="title_2">
+                    <ul>
+
+                        <li>Верни </li>
+
+                        <li>контроль</li>
+
+                        <li>над финансами</li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="span6">
+                {{> Request_form_1_inland}}
+
+            </div>
+        </div>
+    </div>
+
+
+    </div></div> <div class="b_block b_10003" data-id="10003" data-b-id="3"><div class="container-fluid"><div class="container">
+        <div class="span16">
+            <h1 class="title">Почему нужно обратиться за помощью?
+            </h1>
+
+
+            <div class="item_list clear">
+
+                <div class="item" data-item-id="1">
+                    <div class="ico" style="background-image: url('/_app/ico/37.png');"></div>
+                    <div class="name">Компетентность
+                    </div>
+                    <div class="desc"><p>Наша юридическая фирма существует с 1992 года. Опыт в решении проблем с кредитами внушает уверенность.<br></p>
+                    </div>
+                </div>
+
+                <div class="item" data-item-id="2">
+                    <div class="ico" style="background-image: url('/_app/ico/194.png');"></div>
+                    <div class="name"><p>Законность<br></p></div>
+                    <div class="desc">Мы действуем всецело в рамках закона Российской Федерации. <br>Чётко. Быстро. Слаженно.<br></div>
+                </div>
+
+                <div class="item" data-item-id="3">
+                    <div class="ico" style="background-image: url('/_app/ico/126.png');"></div>
+                    <div class="name">Репутация
+                    </div>
+                    <div class="desc"><p>Мы наработали большой опыт успешных решений кредитных споров, сокращения долговых обязательств и отсрочек платежей.<br></p>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+
+            </div>
+        </div>
+    </div></div></div> <div class="b_block b_10004" data-id="10004" data-b-id="4"><div class="container-fluid"><div class="container">
+        <div class="span16">
+            <h1 class="title">Что мы предлагаем</h1>
+            <div class="title_2">Расторжение банковского договора.<br>Заморозка пеней, штрафов.<br>Отмена надоедливых звоков.<br>Спокойствие и уверенность.<br>
+            </div>
+
+            <div class="item_list clear">
+
+                <div class="item" data-item-id="1">
+                    <div class="item_data">
+                        <div class="img"><img src="/img/544634_600/usd_hell.jpg"></div>
+                        <div class="name"><p>Валютные кредиты<br></p></div>
+                        <div class="desc">Затраты ЦБ на гашение скачков курсов валют оценили в 28 миллиардов долларов. Результат?<br>
+                        </div>
+                        <div class="price"><p>Валютный кредит горит?<br></p>
+                        </div>
+                        <div class="btn_wrap"><div class="btn form_btn"><a class="orange"><div><span>Решение</span></div></a></div></div>
+                    </div>
+                </div>
+
+
+                <div class="item" data-item-id="2">
+                    <div class="item_data">
+                        <div class="img"><img src="/img/544624_600/trends-up.jpg"></div>
+                        <div class="name">Бегство от рабства
+                        </div>
+                        <div class="desc">Пени, проценты и штрафы, просрочки. Если ваш финансовый тренд идёт в минус — это надолго и сами вы не справитесь.<br></div>
+                        <div class="price">Пора прекратить это!</div>
+                        <div class="btn_wrap"><div class="btn form_btn"><a class="orange"><div><span>Решение</span></div></a></div></div>
+                    </div>
+                </div>
+
+
+                <div class="item" data-item-id="3">
+                    <div class="item_data">
+                        <div class="img"><img src="/img/544679_600/call-stop.jpg"></div>
+                        <div class="name"><p>Звонки и смс?<br></p></div>
+                        <div class="desc">Надоели звонки и СМС от "коллекторов"?<br>Мы научим Вас правильно общаться с ними.<br>Теперь они не имеют права вас тревожить.<br></div>
+                        <div class="price">Вы обретёте спокойствие.
+                        </div>
+                        <div class="btn_wrap"><div class="btn form_btn"><a class="orange"><div><span>Решение</span></div></a></div></div>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+
+            </div>
+        </div>
+    </div>
+
+    </div></div> <div class="b_block b_10005" data-id="10005" data-b-id="5"><div class="container-fluid"><div class="container">
+        <div class="span16">
+            <h1 class="title"><div>Почему с нами</div></h1>
+            <div class="title_2">Восемь причин перестать откладывать
+            </div>
+
+            <div class="item_list clear">
+
+                <div class="item" data-item-id="1">
+                    <div class="ico_wrap"><div class="ico"><i style="background-image: url('/_app/ico/57.png');"></i></div></div>
+                    <div class="name">Информационное сопровождение</div>
+                    <div class="desc">Наш профессионализм и знание законов быстро охлаждает "пыл" коллекторов. Звонить и писать вам глупые СМС незаконно (защита личных данных).<br>
+                    </div>
+                </div>
+
+
+                <div class="item" data-item-id="2">
+                    <div class="ico_wrap"><div class="ico"><i style="background-image: url('/_app/ico/33.png');"></i></div></div>
+                    <div class="name">Улучшение финансового положения
+                    </div>
+                    <div class="desc">Забудьте про "перекредитование" и прочие сомнительные решения.<br>Мы вас от этого освободим. Занимайтесь своей жизнью, а не банковскими долгами.<br></div>
+                </div>
+                <div style="clear: both"></div>
+
+                <div class="item" data-item-id="3">
+                    <div class="ico_wrap"><div class="ico"><i style="background-image: url('/_app/ico/130.png');"></i></div></div>
+                    <div class="name">Защита по закону
+                    </div>
+                    <div class="desc">Никто не сможет вас тревожить. Ваша задача — заниматься своими делами, ведущими к улучшению вашей жизни, выкинув все посторонние шумы из головы.<br>
+                    </div>
+                </div>
+
+
+                <div class="item" data-item-id="4">
+                    <div class="ico_wrap"><div class="ico"><i style="background-image: url('/_app/ico/209.png');"></i></div></div>
+                    <div class="name">Конфиденциальность
+                    </div>
+                    <div class="desc">Мы профессиональные юристы. Для нас ваша конфиденциальность так же важна, как врачебная тайна для докторов.<br>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+
+                <div class="item" data-item-id="5">
+                    <div class="ico_wrap"><div class="ico"><i style="background-image: url('/_app/ico/62.png');"></i></div></div>
+                    <div class="name">Юридическая грамотность
+                    </div>
+                    <div class="desc">Мы действуем исключительно в рамках закона. Точка.<br></div>
+                </div>
+
+
+                <div class="item" data-item-id="6">
+                    <div class="ico_wrap"><div class="ico"><i style="background-image: url('/_app/ico/42.png');"></i></div></div>
+                    <div class="name">Работа по договору</div>
+                    <div class="desc">Мы составляем договор, сами готовим все необходимые бумаги для решения ваших задач.<br>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+
+                <div class="item" data-item-id="7">
+                    <div class="ico_wrap"><div class="ico"><i style="background-image: url('/_app/ico/45.png');"></i></div></div>
+                    <div class="name"><p>Экономия ваших средств<br></p></div>
+                    <div class="desc">Мы быстро заморозим все пени, штрафы&nbsp; и текущие проценты.<br>
+                    </div>
+                </div>
+
+
+                <div class="item" data-item-id="8">
+                    <div class="ico_wrap"><div class="ico"><i style="background-image: url('/_app/ico/64.png');"></i></div></div>
+                    <div class="name">Гарантированный результат
+
+                    </div>
+                    <div class="desc">Ваши проблемы с долгами будут решены.<br>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+
+            </div>
+        </div>
+    </div></div></div> <div class="b_block b_12205" data-id="12205" data-b-id="2"><div class="container-fluid"><div class="dark">
+        <div class="container">
+            <div class="span10">
+                <div class="title_1">
+                    <ul>
+
+                        <li>Верните</li>
+
+                        <li>контроль </li>
+
+                        <li>над финансами </li>
+
+                    </ul>
+                </div>
+                <div class="title_2">
+                    <ul>
+
+                        <li>Выберитесь из кредитной ямы </li>
+
+                        <li>Верните время себе</li>
+
+                        <li>Познайте спокойствие</li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="span6">
+                {{> Request_form_1_inland}}
+            </div>
+        </div>
+    </div>
+
+
+        <div class="ext_form" style="display: none">
+            <div class="form_done">
+                <div class="form_done_title">Спасибо!
+                </div>
+                <div class="form_done_text">Наш менеджер свяжется с Вами в ближайшее время. Подготовьте документы, договора с банками
+                </div>
+            </div>
+        </div>
+
+    </div></div> <div class="b_block b_46096" data-id="46096" data-b-id="40"><div class="container-fluid"><div class="container">
+        <div class="span16 clear">
+            <div class="text_data">
+                <h1 class="title">Что такое раскредитование?
+                </h1>
+                <div class="title_2">Как избавиться от финансового рабства
+                </div>
+                <div class="text"><p>К нам приходят люди с гигантским комом финансовых проблем, просрочек, долгов. Часто уже с коллекторскими хвостами, просрочками по несколько месяцев нескольким банкам. Иногда ещё и дважды обманутые.<br></p><p> Всё из-за непонимания того, что и как нужно делать. <br></p><p><br></p><p>Самый худший способ — перезанять. <br></p><p><br></p><p>В сознании прочно сидит: "перезайму, перебьюсь, перетерплю, справлюсь". Тем не менее, если ваш финансовый баланс уже входит в минус, началась турбулентность, пошли просрочки, штрафы, вы стараетесь выплачивать, но находитесь на грани, финансовое положение мгновенно не улучшается, пора изменить мышление. Иначе длиться будет этот кошмар много лет.<br></p><p><br></p><p>То, что на самом деле нужно сделать — избавиться от тяжеленного хвоста процентов и штрафов. Прямо сейчас. Перестать бегать за банками и от банков.&nbsp;</p><p><br></p><p>Сложно перестать делать привычные ошибки. Сложно, но нужно. Пора признать, реальность такова, что вы не выиграете у банков, играя в кредитную рулетку. Доказано на практике.<br></p><p><br></p><p>Пора заняться своей жизнью, начать решать реальные проблемы, из-за которых всё закрутилось с самого начала и что привело вас к обрыву долговой ямы.</p>
+                <br>
+                <p>Прежде, чем всплывать, нужно избавиться от финансовой гири. Мы поможем это сделать.</p>
+                </div>
+            </div>
+            <div class="ico_data">
+                <div class="item_list clear">
+
+                    <div class="item" data-item-id="1">
+                        <div class="ico" style="background-image: url('/img/545074_100/stop_3438.png');"></div>
+                        <div class="name">Никаких перекредитований
+                        </div>
+                        <div class="desc"><b>То, что мы предлагаем — прямо противоположно общепринятой ошибке. </b>Нужно прекратить перезанимать.<br>От мысли к действию — один звонок.<br>
+                        </div>
+                    </div>
+
+                    <div class="item" data-item-id="2">
+                        <div class="ico" style="background-image: url('/img/545091_100/bank_2769.png');"></div>
+                        <div class="name">Курс рубля провалился
+                        </div>
+                        <div class="desc"><p></p><b>Государство снова накачало банки. </b>Но это ничего не дало. Многие
+                            граждане в эти сложные времена перестали справляться с финансовой
+                            нагрузкой. Банки требуют своё по договору.
+                        </div>
+                    </div>
+
+                    <div class="item" data-item-id="3">
+                        <div class="ico" style="background-image: url('/img/545071_100/glass.png');"></div>
+                        <div class="name">Прозрачноcть
+                        </div>
+                        <div class="desc"><p>Вариант решения проблемы прост и очевиден. <br></p><p><b>Нужно остановить банковский счётчик.</b></p><p>Законы Российской Федерации на вашей стороне!<br></p>
+                        </div>
+                    </div>
+
+                    <div class="item" data-item-id="4">
+                        <div class="ico" style="background-image: url('/img/545078_100/grenade.png');"></div>
+                        <div class="name">Борьба
+                        </div>
+                        <div class="desc"><p>Всё в рамках закона.</p><p>Ваши данные полностью анонимны!</p><p><b>Верните себе спокойную жизнь.</b><br></p>
+                        </div>
+                    </div>
+
+                    <div class="item" data-item-id="5">
+                        <div class="ico" style="background-image: url('/img/545087_100/cash.png');"></div>
+                        <div class="name">Экономия средств
+                        </div>
+                        <div class="desc">Время идёт, банк начисляет штрафы и проценты. <br><b>Остановим это.</b>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div></div></div> <div class="b_block b_96306" data-id="96306" data-b-id="18"><div class="container-fluid"><div class="container">
+        <div class="span16">
+            <h1 class="title">План действий</h1>
+
+
+            <div class="item_list clear">
+
+                <div class="item" data-item-id="1">
+                    <div class="arrow"></div>
+                    <div class="ico" style="background-image: url('/_app/ico/154.png');"></div>
+                    <div class="name">Заявка или звонок</div>
+                    <div class="desc">Оставьте заявку на этом сайте. Наш менеджер перезвонит для уточнения деталей. Можете кратко описать проблему в комментарии.
+                    </div>
+                </div>
+
+                <div class="item" data-item-id="2">
+                    <div class="arrow"></div>
+                    <div class="ico" style="background-image: url('/_app/ico/83.png');"></div>
+                    <div class="name">Консультация
+                    </div>
+                    <div class="desc">Научим вас действовать грамотно, ваш индивидуальный план.<br></div>
+                </div>
+
+                <div class="item" data-item-id="3">
+                    <div class="arrow"></div>
+                    <div class="ico" style="background-image: url('/_app/ico/193.png');"></div>
+                    <div class="name">Договор
+                    </div>
+                    <div class="desc">Составим договор наших услуг. От вас понадобится минимум времени и усилий.<br></div>
+                </div>
+
+                <div class="item" data-item-id="4">
+                    <div class="arrow"></div>
+                    <div class="ico" style="background-image: url('/_app/ico/266.png');"></div>
+                    <div class="name"><p>Результат<br></p>
+                    </div>
+                    <div class="desc"><p>Спокойствие. Только спокойствие. Проблемы с долгами решены, занимайтесь своей жизнью.<br></p></div>
+                </div>
+
+            </div>
+        </div>
+    </div></div></div> <div class="b_block b_40356" data-id="40356" data-b-id="14"><div class="container-fluid"><div class="container">
+        <div class="img_wrap">
+
+            <div class="img" style="background-image: url('/img/544881_600/zero.jpg');"></div>
+
+        </div>
+        <div class="data_wrap">
+            <h1 class="title_1">Остановите<br><span style="color:#C1103A"></span>
+            </h1>
+            <div class="title_2">потерю собственных средств
+            </div>
+            <div class="desc"><p><p>Иначе банк опередит ситуацию, и накопив достаточно сверхприбыли (штрафы, пени),  подаст в суд, в этом случае произойдёт:</p><p> Начисление огромных штрафов и пени за каждый день просрочки, убыток банка будет зафиксирован в суде.</p>
+
+                <div>
+
+                    <p>Взыскание коллекторскими
+                        службами в течение нескольких месяцев (большинство методов незаконны и испортят жизнь: угрозы,
+                        звонки на работу, приходы в квартиру, “опись” имущества).</p>
+                </div>
+
+                <div>
+
+                    <p>Суд&nbsp; признает заёмщика виновным.</p></div></p><p>Позвоните нам, и мы расскажем, как этого избежать.<br></p>
+            </div>
+
+            <div class="btn_wrap"><a class="btn orange"><div><span>Получить консультацию</span></div></a></div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+
+        <div class="ext_form" style="display: none">
+            <div class="form">
+                <div class="form_title">Время дорого
+                </div>
+                <div class="form_data">
+                    <form action="/mod/lead/send/" method="post" enctype="multipart/form-data" novalidate>
+                        <input type="hidden" name="name" value="Заявка">
+                        <div class="form_fields">
+
+                            <input type="hidden" name="type[10001]" value="text">
+                            <input type="hidden" name="vars[10001]" value="Имя">
+                            <div class="form_field" data-type="text" data-is-required="true">
+
+                                <label>
+                                    <div class="field_title">Имя:<i>*</i></div>
+
+                                    <input type="text" class="form_field_text" name="form[10001]">
+                                    <div class="error"></div>
+                                </label>
+
+                            </div>
+
+                            <input type="hidden" name="type[10002]" value="text">
+                            <input type="hidden" name="vars[10002]" value="Телефон">
+                            <div class="form_field" data-type="text" data-is-required="true">
+
+                                <label>
+                                    <div class="field_title">Телефон:<i>*</i></div>
+
+                                    <input type="text" class="form_field_text" name="form[10002]">
+                                    <div class="error"></div>
+                                </label>
+
+                            </div>
+
+                        </div>
+                        <div class="form_submit">
+                            <a class="form_field_submit red"><div><span>Оставить заявку</span></div></a>
+                        </div>
+                    </form>
+                </div>
+                <div class="form_bottom">Мы не передаем Вашу персональную информацию третьим лицам, гарантируем абсолютную конфиденциальность&nbsp;
+
+                </div>
+            </div>
+            <div class="form_done">
+                <div class="form_done_title">Спасибо за заявку</div>
+                <div class="form_done_text">Заявка отправлена. Наш менеджер свяжется с Вами в ближайшее время.</div>
+            </div>
+        </div></div></div> <div class="b_block b_10009" data-id="10009" data-b-id="9"><div class="container-fluid"><div class="container">
+        <div class="span16">
+            <h1 class="title"><p>Отзывы? Мы сохраняем конфиденциальнось.</p></h1>
+
+
+            <div class="item_list clear">
+
+                <div class="item" data-item-id="1">
+                    <div class="item_data">
+                        <div class="text"><p>Банки? Коллекторы? Эти персонажи сами меня боятся. Часто я их шантажирую. Звоню и колко шучу.<br></p><p><br></p><p><br></p>
+                        </div>
+                        <div class="name"><p>Маска<br></p></div>
+                        <div class="desc"><p>Выдуманный персонаж, герой фильма<br></p></div>
+                        <div class="img_wrap"><div class="img" style="background-image: url('/img/544821_600/mask.jpg');"></div></div>
+                    </div>
+                </div>
+
+
+                <div class="item" data-item-id="2">
+                    <div class="item_data">
+                        <div class="text"><p>Брал кредит, для того чтобы решить текущие проблемы. Радость была недолгой. Стал брать кредиты для гашения кредитов, ушёл в долги.</p><p>Моей зарплаты теперь хватает на то, чтобы гасить проценты три поколения.<br></p>
+                        </div>
+                        <div class="name"><p>Трудяга<br></p></div>
+                        <div class="desc">Коллективный образ рабочего
+                        </div>
+                        <div class="img_wrap"><div class="img" style="background-image: url('/img/544834_600/proletariat.jpg');"></div></div>
+                    </div>
+                </div>
+
+
+                <div class="item" data-item-id="3">
+                    <div class="item_data">
+                        <div class="text">Живу и веду бизнес в России. Проценты по кредитам здесь запредельные. Честно и исправно выплачивал всё банкам много лет, но когда пришла беда на рынок, голодные банки решили мной полакомиться.<br>
+                        </div>
+                        <div class="name">Бизнесмен
+                        </div>
+                        <div class="desc">Коллективный образ бизнесмена
+                        </div>
+                        <div class="img_wrap"><div class="img" style="background-image: url('/img/544863_600/ohh.jpg');"></div></div>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+
+            </div>
+        </div>
+    </div></div></div> <div class="b_block b_13419" data-id="13419" data-b-id="17"><div class="container-fluid"><div class="container">
+        <div class="span6">
+            <div class="logo">
+
+                <div class="company_name" style="color:#e6410e;font-size:26px;font-family:Arial;font-weight:bold;font-style:normal;">Раскредитование</div>
+
+            </div>
+
+            <div class="desc">Свобода от кредитного рабства
+            </div>
+
+        </div>
+        <div class="span6 span_ico">
+            <div class="ico_wrap ico_1">
+                <div class="ico" style="background-image: url('/_app/ico/85.png');"></div>
+                <div class="ico_name"><div></div><div>СОХРАНИМ <br>ВАШИ <br>ДЕНЬГИ</div><div></div>
+                </div>
+            </div>
+            <div class="ico_wrap ico_2">
+                <div class="ico" style="background-image: url('/_app/ico/65.png');"></div>
+                <div class="ico_name"><div></div><div>ПРОФЕССИОНАЛЬНАЯ</div>ЮРИДИЧЕСКАЯ<br>КОНСУЛЬТАЦИЯ<div></div>
+                </div>
+            </div>
+            <div class="ico_wrap ico_3">
+                <div class="ico" style="background-image: url('/_app/ico/209.png');"></div>
+                <div class="ico_name"><div></div><div>КОНФИДЕНЦИАЛЬНО</div>БЫСТРО<br>ЗАКОННО<div></div>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div class="span4">
+            <div class="phone">8 (812) 385 54 65
+            </div>
+
+            <div class="span_btn">
+                <div class="btn_wrap"><a class="btn" style="background-color: #e6410e;">Узнайте, как действовать</a></div>
+            </div>
+
+        </div>
+    </div>
+
+        <div class="ext_form" style="display: none">
+            <div class="form">
+                <div class="form_title">Оставить заявку</div>
+                <div class="form_data">
+                    <form action="/mod/lead/send/" method="post" enctype="multipart/form-data" novalidate>
+                        <input type="hidden" name="name" value="Заявка">
+                        <div class="form_fields">
+
+                            <input type="hidden" name="type[10001]" value="text">
+                            <input type="hidden" name="vars[10001]" value="Имя">
+                            <div class="form_field" data-type="text" data-is-required="true">
+
+                                <label>
+                                    <div class="field_title">Имя:<i>*</i></div>
+
+                                    <input type="text" class="form_field_text" name="form[10001]">
+                                    <div class="error"></div>
+                                </label>
+
+                            </div>
+
+                            <input type="hidden" name="type[10002]" value="text">
+                            <input type="hidden" name="vars[10002]" value="Телефон">
+                            <div class="form_field" data-type="text" data-is-required="true">
+
+                                <label>
+                                    <div class="field_title">Телефон:<i>*</i></div>
+
+                                    <input type="text" class="form_field_text" name="form[10002]">
+                                    <div class="error"></div>
+                                </label>
+
+                            </div>
+
+                        </div>
+                        <div class="form_submit">
+                            <a class="form_field_submit orange"><div><span>Обратный звонок</span></div></a>
+                        </div>
+                    </form>
+                </div>
+                <div class="form_bottom">Мы не передаем Вашу персональную информацию третьим лицам, гарантируем абсолютную конфиденциальность&nbsp;
+                </div>
+            </div>
+            <div class="form_done">
+                <div class="form_done_title">Спасибо!</div>
+                <div class="form_done_text">Наш менеджер свяжется с Вами в ближайшее время. Подготовьте документы, договора с банками.
+                </div>
+            </div>
+        </div></div></div> <div class="b_block b_10010" data-id="10010" data-b-id="10"><div class="container-fluid"><div class="map_wrap">
+
+        <div class="container">
+            <div class="map_overlay">
+                <div class="item_list clear">
+
+                    <div class="item clear" data-item-id="1">
+                        <div class="title">Санкт-Петербург
+                        </div>
+                        <div class="desc">
+                            <div>ООО «Финансовая мастерская», 195220,
+                                <br><br>метро Удельная, улица Аккуратова дом 13, ТРЦ "Долина Роз", помещение 4-3-Б
+                                <br><br>метро Нарвская, Нарвский проспект дом 22, офис  224
+                                <br><br>метро площадь Александра Невского дом 2 <nobr>(гостиница "Москва")</nobr>, 3 подъезд, офис 5007
+                                <div>Тел: 8 (812) 385 54 65<br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div id="map" class="map">
+        <!--
+            <script type="text/javascript">
+                ymaps.ready(init);
+                var myMap;
+
+                function init(){
+                    myMap = new ymaps.Map("map",
+                            {"center":[60.016021, 30.3109626],
+                                "zoom":14,
+                                "places":[
+                                    {"address":"метро Удельная, улица Аккуратова, 13, ТРЦ \"Долина Роз\", помещение 4-3-Б",
+                                        "coords":[60.003876,30.387617],
+                                        "color":"red"}
+                                ]
+                            });
+                    myPlacemark = new ymaps.Placemark([60.016021, 30.3109626], {
+                                hintContent: 'метро Удельная, улица Аккуратова дом 13, ТРЦ "Долина Роз", помещение 4-3-Б',
+                                balloonContent: 'метро Удельная, улица Аккуратова дом 13, ТРЦ "Долина Роз", помещение 4-3-Б'
+                            }
+                    );
+                    myPlacemark2 = new ymaps.Placemark([59.9020545, 30.2738686], {
+                                hintContent: 'метро Нарвская, Нарвский проспект дом 22, офис  224',
+                                balloonContent: 'метро Нарвская, Нарвский проспект дом 22, офис  224'
+                            }
+                    );
+                    myPlacemark3 = new ymaps.Placemark([59.9244237, 30.3866378], {
+                                hintContent: 'метро площадь Александра Невского дом 2 (гостиница "Москва"), 3 подъезд, офис 5007',
+                                balloonContent: 'метро площадь Александра Невского дом 2 (гостиница "Москва"), 3 подъезд, офис 5007'
+                            }
+                    );
+
+                    myMap.geoObjects.add(myPlacemark);
+                    myMap.geoObjects.add(myPlacemark2);
+                    myMap.geoObjects.add(myPlacemark3);
+                };
+            </script>
+            -->
+
+            <script type="text/javascript">
+
+                var map;
+
+                DG.then(function () {
+                    map = DG.map('map', {
+                        center: [59.952947460382326, 30.342178344726566],
+                        zoom: 11
+                    });
+                    DG.marker([59.9020545, 30.2738686], {
+                        label : 'метро Нарвская, Нарвский проспект дом 22, офис  224'
+                    }).addTo(map)
+                        .bindPopup('метро Нарвская, Нарвский проспект дом 22, офис  224');
+                    DG.marker([60.016021, 30.3109626], {
+                        label : 'метро Удельная, улица Аккуратова дом 13, ТРЦ "Долина Роз", помещение 4-3-Б'
+                    }).addTo(map)
+                        .bindPopup('метро Удельная, улица Аккуратова дом 13, ТРЦ "Долина Роз", помещение 4-3-Б');
+                    DG.marker([59.9244237, 30.3866378], {
+                        label : 'метро площадь Александра Невского дом 2 (гостиница "Москва"), 3 подъезд, офис 5007'
+                    }).addTo(map)
+                        .bindPopup('метро площадь Александра Невского дом 2 (гостиница "Москва"), 3 подъезд, офис 5007');
+                });
+
+            </script>
+
+            <!--
+            <a class="dg-widget-link" href="http://2gis.ru/spb/profiles/70000001019760863,70000001019760876,70000001019760881/center/30.342178344726566,59.952947460382326/zoom/11?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">
+            Посмотреть на карте Санкт-Петербурга</a>
+            <script charset="utf-8" src="http://widgets.2gis.com/js/DGWidgetLoader.js"></script>
+            <script charset="utf-8">
+                new DGWidgetLoader(
+                {"width":640,
+                "height":600,
+                "borderColor":"#a3a3a3",
+                "pos":{"lat":59.952947460382326,"lon":30.342178344726566,"zoom":11},
+                "opt":{"city":"spb"},
+                "org":[{"id":"70000001019760863"},{"id":"70000001019760876"},{"id":"70000001019760881"}]});
+            </script>
+            <noscript style="color:#c00;font-size:16px;font-weight:bold;">Виджет карты использует JavaScript. Включите его в настройках вашего браузера.</noscript>
+            -->
+
+        </div>
+        </div>
+
+
+    </div></div></div> <div class="b_block b_10012" data-id="10012" data-b-id="12"><div class="container-fluid"><div class="container show_copyright">
+        <div class="span4">
+            <div class="logo">
+
+                <div class="company_name" style="color:#000000;font-size:28px;font-family:Arial;font-weight:normal;font-style:normal;">Раскредитование</div>
+
+            </div>
+        </div>
+        <div class="span7">
+            <div class="desc"><div>ООО «Финансовая мастерская», 195220,
+                <br><br>метро Удельная, улица Аккуратова дом 13, ТРЦ "Долина Роз", помещение 4-3-Б
+                <br><br>метро Нарвская, Нарвский проспект дом 22, офис  224
+                <br><br>метро площадь Александра Невского дом 2 (гостиница "Москва"), 3 подъезд, офис 5007
+            </div>
+                <br>
+            <div>ИНН 780454896 ОГРН 1147847411106</div>
+            </div>
+            <div class="policy_wrap"><a class="policy">Политика конфиденциальности</a></div>
+        </div>
+        <div class="span5">
+            <div class="phone">8 (812) 385 54 65
+            </div>
+            <div class="phone_desc">Санкт-Петербург
+
+            </div>
+        </div>
+    </div></div></div>
+
+    <script src="/_s/lib/require/require.js" type="text/javascript"></script>
+   <!-- <script src="/_s/js/build_land_core.js?v116" type="text/javascript"></script> -->
+
+    {{> Request_form_1}}
+    {{> Request_form_1_thanks}}
+    {{> Confidential}}
+    <div class="modal_overlay" style="display:none"></div>
+    </body>
+</template>
+
+<template name="Confidential">
+    <div class="policy_window" style="display:none"><a class="close"></a>
+        <div class="policy_data" style="height: 425px;"><div>
+            <h2>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</h2><p>Соблюдение Вашей конфиденциальности важно для нас. По этой причине, мы разработали Политику Конфиденциальности, которая описывает, как мы используем и храним Вашу информацию. Пожалуйста, ознакомьтесь с нашими правилами соблюдения конфиденциальности и сообщите нам, если у вас возникнут какие-либо вопросы.</p><h3>Сбор и использование персональной информации</h3><p>Под персональной информацией понимаются данные, которые могут быть использованы для идентификации определенного лица либо связи с ним.</p><p>От вас может быть запрошено предоставление вашей персональной информации в любой момент, когда вы связываетесь с нами. </p><p>Ниже приведены некоторые примеры типов персональной информации, которую мы можем собирать, и как мы можем использовать такую информацию.</p><h4>Какую персональную информацию мы собираем</h4><ul><li>Когда вы оставляете заявку на сайте, мы можем собирать различную информацию, включая ваши имя, номер телефона, адрес электронной почты и т.д.</li></ul><h4>Как мы используем вашу персональную информацию</h4><ul><li>Собираемая нами персональная информация позволяет нам связываться с вами и сообщать об уникальных предложениях, акциях и других мероприятиях и ближайших событиях. </li><li>Время от времени, мы можем использовать вашу персональную информацию для отправки важных уведомлений и сообщений. </li><li>Мы также можем использовать персональную информацию для внутренних целей, таких как проведения аудита, анализа данных и различных исследований в целях улучшения услуг предоставляемых нами и предоставления Вам рекомендаций относительно наших услуг.</li><li>Если вы принимаете участие в розыгрыше призов, конкурсе или сходном стимулирующем мероприятии, мы можем использовать предоставляемую вами информацию для управления такими программами.</li></ul><h3>Раскрытие информации третьим лицам</h3><p>Мы не раскрываем полученную от Вас информацию третьим лицам. </p><h4>Исключения</h4><p>В случае если необходимо — в соответствии с законом, судебным порядком, в судебном разбирательстве, и/или на основании публичных запросов или запросов от государственных органов на территории РФ — раскрыть вашу персональную информацию. Мы также можем раскрывать информацию о вас если мы определим, что такое раскрытие необходимо или уместно в целях безопасности, поддержания правопорядка, или иных общественно важных случаях.</p><p>В случае реорганизации, слияния или продажи мы можем передать собираемую нами персональную информацию соответствующему третьему лицу – правопреемнику.</p><h3>Защита персональной информации</h3><p>Мы предпринимаем меры предосторожности — включая административные, технические и физические — для защиты вашей персональной информации от утраты, кражи, и недобросовестного использования, а также от несанкционированного доступа, раскрытия, изменения и уничтожения.</p><h3>Соблюдение вашей конфиденциальности на уровне компании</h3><p>Для того чтобы убедиться, что ваша персональная информация находится в безопасности, мы доводим нормы соблюдения конфиденциальности и безопасности до наших сотрудников, и строго следим за исполнением мер соблюдения конфиденциальности.</p></div></div></div>
+</template>

@@ -1,0 +1,276 @@
+<template name="A_managers">
+  {{> charset}}
+  {{> fonts}}
+  {{> a_css}}
+    <title>Администрирование</title>
+
+    <div class="">
+        <div class="">
+
+            <div class="col-lg-12">
+
+              {{> errors}}
+
+                <!-- TOP NAVBAR -->
+
+              {{> upmenu}}
+
+                <!-- -->
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="block-flat">
+                                <div class="header">
+                                    <h3>Менеджеры <a href=""><span class="glyphicon glyphicon-plus" style="width:3px" id="AddManager" aria-hidden="true"></span></a></h3>
+                                </div>
+
+                                <div class="content">
+                                    <table class="table no-border">
+                                        <thead class="no-border">
+                                        <tr>
+                                            <th style="font-weight: bold">Имя</th>
+                                            <th style="font-weight: bold">Телефон</th>
+                                            <th style="font-weight: bold" class="text-left">Email</th>
+                                            <th style="font-weight: bold; text-align: center">I</th>
+                                            <th style="font-weight: bold; text-align: center">II</th>
+                                            <th style="font-weight: bold; text-align: center">III</th>
+                                            <th style="font-weight: bold; text-align: center">IV</th>
+                                            <th style="font-weight: bold; text-align: center">V</th>
+                                            <th style="font-weight: bold;" class="text-right">Дата обновления</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="no-border-y">
+                                            {{#if AddManager}}
+                                                <tr>
+                                                    <td colspan="8">
+
+                                                        {{#autoForm schema=schema_addmanager id="AddManager_form" type="method" meteormethod="AddManager"}}
+                                                                <fieldset>
+                                                                    {{> afQuickField name="name"}}
+                                                                    {{> afQuickField name="email"}}
+                                                                    {{> afQuickField name="password"}}
+                                                                    {{> afQuickField name="phone"}}
+                                                                    <div>
+                                                                        <button type="submit" class="btn btn-primary">Добавить</button>
+                                                                    </div>
+                                                                </fieldset>
+                                                        {{/autoForm}}
+
+                                                    </td>
+                                                </tr>
+                                            {{/if}}
+
+                                            {{#each managers}}
+
+                                            <tr class="request-item {{#if request_is_selected}}row-selected{{/if}}" role="info">
+                                                <td>{{profile.fio}}</td>
+                                                <td>{{profile.phone}}</td>
+                                                <td class="text-left color-success">
+                                                    {{#each emails}}
+                                                        {{address}}
+                                                        <br/>
+                                                    {{/each}}
+
+                                                </td>
+
+                                                <td category="1">{{category1_count}}</td>
+                                                <td category="2">{{category2_count}}</td>
+                                                <td category="3">{{category3_count}}</td>
+                                                <td category="4">{{category4_count}}</td>
+                                                <td category="5">{{category5_count}}</td>
+                                                <td class="text-right ">
+                                                    {{ createdAt}}
+                                                </td>
+                                            </tr>
+
+                                            {{#if request_is_selected}}
+                                              {{#if equals request_selected.role "info"}}
+                                                  <tr class="request-working">
+                                                      <td colspan=6>
+                                                          <table class="table">
+                                                              <tbody>
+                                                              <tr>
+                                                                  <td>IP</td>
+                                                                  <td>{{ip_address}}</td>
+                                                              </tr>
+                                                              <tr>
+                                                                  <td>Коммментарий менеджера</td>
+                                                                  <td>{{manager_comments}}</td>
+                                                              </tr>
+                                                              <tr>
+                                                                  <td>Менеджер</td>
+                                                                  <td>{{manager}}</td>
+                                                              </tr>
+                                                              <tr>
+                                                                  <td>Статус</td>
+                                                                  <td>{{status}}</td>
+                                                              </tr>
+                                                              <tr>
+                                                                  <td>Добавлено</td>
+                                                                  <td>{{#with addedFormatted added}}
+                                                                    {{date}}<br>{{time}}
+                                                                  {{/with}}
+                                                                  </td>
+                                                              </tr>
+                                                              <tr>
+                                                                  <td>Оператор</td>
+                                                                  <td>
+                                                                  </td>
+                                                              </tr>
+                                                              </tbody>
+                                                          </table>
+                                                      </td>
+                                                  </tr>
+                                              {{/if}}
+
+                                              {{#if equals request_selected.role "bad"}}
+                                                  <tr class="request-working">
+                                                      <td colspan=6>
+                                                          <div>
+                                                            {{#autoForm id="request_bad" doc=selectedRequest type="update" schema=Schemas.Requests collection=Collections.Requests resetOnSuccess=true}}
+                                                                <label class="col-sm-3 control-label">Отклонить: указать причину</label>
+                                                                <div class="col-sm-6">
+                                                                  {{> afFieldInput type="hidden" name="status" value="bad"}}
+                                                                  {{> afFieldInput type="hidden" name="manager" value=currentUser._id}}
+                                                                  {{> afFieldInput name="manager_comments" optional=false}}
+                                                                  {{#if afFieldIsInvalid name='manager_comments'}}
+                                                                      <span class="help-block">Обязательно укажите причину отклонения</span>
+                                                                  {{/if}}
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="btn btn-warning" type="submit">Отклонить</button>
+                                                                </div>
+                                                            {{/autoForm}}
+                                                          </div>
+                                                      </td>
+                                                  </tr>
+                                              {{/if}}
+
+                                              {{#if equals request_selected.role "add"}}
+                                                  <tr class="request-working">
+                                                      <td colspan=6>
+                                                          <div>
+                                                            {{#autoForm id="request_new" doc=selectedRequest type="update" schema=Schemas.Requests collection=Collections.Requests resetOnSuccess=true}}
+                                                                <label class="col-sm-3 control-label">
+                                                                  {{#if client_selected}}
+                                                                      Прикрепить: найти заявку
+                                                                  {{else}}
+                                                                      Создать новую: Указать ФИО
+                                                                  {{/if}}</label>
+                                                                <div class="col-sm-6">
+                                                                  {{> afFieldInput type="hidden" name="status" value="attached"}}
+                                                                  {{> afFieldInput type="hidden" name="manager" value=currentUser._id}}
+                                                                  {{> afFieldInput class="attach-request" name="manager_comments" optional=false}}
+                                                                  {{#if afFieldIsInvalid name='manager_comments'}}
+                                                                      <span class="help-block">
+                                                                        {{#if client_selected}}
+                                                                            Введите части данных, можно несколько слов
+                                                                        {{else}}
+                                                                            Обязательно укажите полностью ФИО
+                                                                        {{/if}}
+                                                                      </span>
+                                                                  {{/if}}
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="btn {{#if client_selected}}btn-primary{{else}}btn-success{{/if}}" type="submit">
+                                                                      {{#if client_selected}}
+                                                                          Прикрепить.
+                                                                      {{else}}
+                                                                          Создать!
+                                                                      {{/if}}</button>
+                                                                </div>
+                                                            {{/autoForm}}
+                                                          </div>
+                                                      </td>
+                                                  </tr>
+                                                  <tr class="request-working">
+                                                      <td colspan="6">
+                                                          <table class="table table-condensed table-stripe">
+                                                              <thead>
+                                                              <tr>
+                                                                  <th>
+                                                                      Данные
+                                                                  </th>
+                                                                  <th>
+                                                                      Контакты
+                                                                  </th>
+                                                                  <th>
+                                                                      Дата
+                                                                  </th>
+                                                                  <th>
+                                                                      Менеджер
+                                                                  </th>
+                                                              </tr>
+                                                              </thead>
+                                                              <tbody>
+                                                              {{#each searchClients}}
+                                                                  <tr class="client-item {{#if client_is_selected}}cli-selected{{/if}}" role="info">
+                                                                      <td>
+                                                                        {{#each info}}
+                                                                          {{type}} — {{content}}<br>
+                                                                        {{/each}}
+                                                                      </td>
+                                                                      <td>
+                                                                        {{#each contacts}}
+                                                                          {{type}} — {{content}}<br>
+                                                                        {{/each}}
+                                                                      </td>
+                                                                      <td>
+                                                                        {{#with addedFormatted added}}
+                                                                          {{date}}<br>{{time}}
+                                                                        {{/with}}
+                                                                      </td>
+                                                                      <td>
+                                                                        {{owner}}
+                                                                      </td>
+                                                                  </tr>
+                                                              {{/each}}
+                                                              </tbody>
+                                                          </table>
+                                                      </td>
+                                                  </tr>
+                                              {{/if}}
+
+                                              {{#if equals request_selected.role "later"}}
+                                                  <tr class="request-working">
+                                                      <td colspan=6>
+                                                          <div>
+                                                            {{#autoForm id="request_later" doc=selectedRequest type="update" schema=Schemas.Requests collection=Collections.Requests resetOnSuccess=true}}
+                                                                <label class="col-sm-3 control-label">Отложить: Указать причину</label>
+                                                                <div class="col-sm-6">
+                                                                  {{> afFieldInput type="hidden" name="manager" value=currentUser._id}}
+                                                                  {{> afFieldInput type="hidden" name="status" value="later"}}
+                                                                  {{> afFieldInput name="manager_comments" optional=false}}
+                                                                  {{#if afFieldIsInvalid name='manager_comments'}}
+                                                                      <span class="help-block">Обязательно укажите причину переноса</span>
+                                                                  {{/if}}
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="btn btn-info" type="submit">Отложить</button>
+                                                                </div>
+                                                            {{/autoForm}}
+                                                          </div>
+                                                      </td>
+                                                  </tr>
+                                              {{/if}}
+
+                                            {{/if}}
+                                        {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</template>

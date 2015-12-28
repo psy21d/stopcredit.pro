@@ -1,0 +1,33 @@
+
+
+<template name="Pagination">
+<div class="paginations">
+{{#if pagination}}
+        <ul class="pagination pagination__form_dynamic">
+            <li><a class="go" data="back">«</a></li>
+
+            {{#with pagination.FirstPage}}
+                    <li><a class="goPage">{{page}}</a></li>
+            {{/with}}
+
+            {{ #each pagination.BackPages }}
+                <li><a class="goPage">{{page}}</a></li>
+            {{/each}}
+
+            <li class="active"><a href="#">{{pagination.CurrentPage}}</a></li>
+
+            {{ #each pagination.NextPages }}
+                <li><a class="goPage">{{page}}</a></li>
+            {{/each}}
+
+            {{#with pagination.EndPage}}
+                    <li><a class="goPage"> {{page}} </a></li>
+            {{/with}}
+
+            <li><a class="go" data="next">»</a></li>
+        </ul>
+    {{else}}
+        <!--<div>Загрузка</div>-->
+{{/if}}
+</div>
+</template>

@@ -1,0 +1,41 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+
+#autopublish
+#insecure
+
+mizzao:bootstrap-3
+mizzao:timesync
+underscore
+less
+aldeed:autoform
+iron:router
+email
+useraccounts:bootstrap
+useraccounts:core
+
+aldeed:simple-schema
+aldeed:collection2
+meteorhacks:picker
+meteorhacks:ssr
+meteorhacks:npm
+
+accounts-base
+accounts-password
+
+jparker:crypto-md5
+osv:mongo-counter
+
+houston:admin
+accounts-ui
+alanning:roles
+
+npm-container
+
+parhelium:templating-ractive
+parhelium:ractive
