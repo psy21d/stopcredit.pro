@@ -204,7 +204,8 @@ Template.A_clients.helpers({
                 { added: { $gte: start } },
                 { added: { $lte: end   } }
             )
-            console.log(query)
+            console.log(query);
+            console.log("TODO: need to fix calendar!");
             return Clients.find(query);
         }
 

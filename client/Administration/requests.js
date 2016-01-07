@@ -1,9 +1,4 @@
-Tracker.autorun(function () {
-//    Meteor.subscribe("requests");
-//    Meteor.subscribe("clients");
-//    Meteor.subscribe("operators");
-    Meteor.subscribe("Managers")
-});
+
 
 Methods = {
     isrole:function(){
