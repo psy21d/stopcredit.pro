@@ -1,0 +1,93 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Добавление, изменение полей информации</h3>
+                </div>
+                <p>Используется для добавления полей данных к записи пользователя и шаблонах документов.<br>
+                Выберите шаблон из списка, тип поля (к чему относится), сделайте описание.<br>
+                Название поля прямо используется в шаблоне,<br>
+                должно соответствовать требованиям к названиям полей данных в коллекциях</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class = "container-fluid parameters">
+    <div class = "row">
+        <div class = "col-lg-6 col-md-8 col-sm-10 col-xs-12">
+        <div class="block-flat">
+
+        <div class="table-table">
+            <div class="table-row">
+                <div class="table-cell" field_name="name">
+                    Название
+                </div>
+                <div class="table-cell" field_name="description">
+                    Описание
+                </div>
+                <div class="table-cell" field_name="type">
+                    Тип
+                </div>
+                <div class="table-cell" field_name="template">
+                    Шаблон
+                </div>
+                <div class="table-cell" field_name="manager">
+                    Менеджер
+                </div>
+                <div class="table-cell pointer" field_name="add" on-click="add_field">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </div>
+            </div>
+            {{#each information_fields}}
+            <div class="table-row">
+                <div class="table-cell" field_name="name">
+                    {{name}}
+                </div>
+                <div class="table-cell" field_name="description">
+                    {{description}}
+                </div>
+                <div class="table-cell" field_name="type">
+                    {{type}}
+                </div>
+                <div class="table-cell" field_name="template">
+                    {{template}}
+                </div>
+                <div class="table-cell" field_name="manager">
+                    {{manager_fio}}
+                </div>
+                <div class="table-cell" field_name="save">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!--
+    name: {
+        type: String,
+        label: "Field name Collections use"
+    },
+    description: {
+        type: String,
+        label: "Full russian description"
+    },
+    "type": {
+        type: String,
+        label: "Type for aggregation (bank, product, contract, etc.)"
+    },
+    "template": {
+        type: [String],
+        label: "Template name for use into"
+    },
+    manager: {
+        type: String,
+        label: "Manager who add this field"
+    }
+    -->

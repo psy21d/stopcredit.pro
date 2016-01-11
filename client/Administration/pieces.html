@@ -22,20 +22,18 @@
 
         <div class="up-menu">
             <div class="nav-block">
-                <div class="nav-icon"><i class="fa fa-home"></i></div>
+                <!-- <div class="nav-icon"><i class="fa fa-home"></i></div>-->
                 {{> loginButtons}}
             </div>
 
             <div class="nav-block">
                 <a href="/a_requests">
-                    <div class="nav-icon"><i class="fa fa-home"></i></div>
                     Заявки
                 </a>
             </div>
 
             <div class="nav-block">
                 <a href="/a_clients">
-                    <div class="nav-icon"><i class="fa fa-smile"></i></div>
                     Клиенты
                 </a>
             </div>
@@ -44,13 +42,23 @@
 
                 <div class="nav-block">
                     <a href="/managers">
-                        <div class="nav-icon"><i class="fa fa-smile"></i></div>
                         Менеджеры
                     </a>
                 </div>
 
-            {{/if}}
+                <div class="nav-block">
+                    <a href="/change_documents">
+                        + Документы
+                    </a>
+                </div>
 
+                <div class="nav-block">
+                    <a href="/change_information">
+                        + Личная информация
+                    </a>
+                </div>
+
+            {{/if}}
 
         </div>
     </div>

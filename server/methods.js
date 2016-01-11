@@ -30,6 +30,19 @@ Meteor.methods({
     GetManagers: function () {
         return
     },
+    GetUserName: function (id) {
+        var user = Meteor.users.findOne({_id:id});
+        console.log(user);
+        if (typeof(user) != 'undefined') {
+            if (typeof(user.fio) != 'undefined') {
+                return user.fio;
+            } else {
+                return 'Error: Безымянный Самозванец';
+            }
+        } else {
+            return 'Error: user not found!';
+        }
+    },
     totalCountRequests: function(query) {
         return Requests.find(query).count();
     },
