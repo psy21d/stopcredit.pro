@@ -13,9 +13,9 @@ Template.errors.helpers({
 Template.errors.callback_error = function(){
     Meteor.defer(function () {
 
-        setTimeout(function(){
-            Session.set('administration_error',null);
-        },5000)
+      //  setTimeout(function(){
+       //     Session.set('administration_error',null);
+      //  },5000)
 
     });
 }

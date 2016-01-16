@@ -17,51 +17,89 @@
 
 <div class = "container-fluid parameters">
     <div class = "row">
-        <div class = "col-lg-6 col-md-8 col-sm-10 col-xs-12">
+        <div class = "col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="block-flat">
 
         <div class="table-table">
             <div class="table-row">
-                <div class="table-cell" field_name="name">
+                <div class="table-cell information_fields_column" field_name="name">
                     Название
                 </div>
-                <div class="table-cell" field_name="description">
+                <div class="table-cell information_fields_column" field_name="description">
                     Описание
                 </div>
-                <div class="table-cell" field_name="type">
+                <div class="table-cell information_fields_column" field_name="type">
                     Тип
                 </div>
-                <div class="table-cell" field_name="template">
+                <div class="table-cell information_fields_column" field_name="template">
                     Шаблон
                 </div>
-                <div class="table-cell" field_name="manager">
+                <div class="table-cell information_fields_column" field_name="manager">
                     Менеджер
                 </div>
-                <div class="table-cell pointer" field_name="add" on-click="add_field">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <div class="table-cell information_fields_column pointer" field_name="add" on-click="add_field">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </div>
             </div>
-            {{#each information_fields}}
+        {{#each information_fields}}
+
+            {{#if need_edit}}
             <div class="table-row">
                 <div class="table-cell" field_name="name">
-                    {{name}}
+                    <input type="text" value="{{name}}">
                 </div>
                 <div class="table-cell" field_name="description">
-                    {{description}}
+                    <input type="text" value="{{description}}">
                 </div>
                 <div class="table-cell" field_name="type">
-                    {{type}}
+                    <select type="text" value="{{type}}">
+                        <option value="">...</option>
+                        {{#each document_types:type}}
+                            <option value="{{type}}">{{description}}</option>
+                        {{/each}}
+                    </select>
                 </div>
                 <div class="table-cell" field_name="template">
-                    {{template}}
+                    <select type="text" value="{{template}}">
+                        <option value="">...</option>
+                        {{#each document_templates:template}}
+                            <option value="{{template}}">{{description}}</option>
+                        {{/each}}
+                    </select>
                 </div>
                 <div class="table-cell" field_name="manager">
                     {{manager_fio}}
                 </div>
-                <div class="table-cell" field_name="save">
+                <div class="table-cell pointer" field_name="save" on-click="save_field">
                     <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
                 </div>
+
             </div>
+                {{else}}
+                <div class="table-row">
+                    <div class="table-cell" field_name="name">
+                        {{name}}
+                    </div>
+                    <div class="table-cell" field_name="description">
+                        {{description}}
+                    </div>
+                    <div class="table-cell" field_name="type">
+                        {{type}}
+                    </div>
+                    <div class="table-cell" field_name="template">
+                        {{template}}
+                    </div>
+                    <div class="table-cell" field_name="manager">
+                        {{manager_fio}}
+                    </div>
+                    <div class="table-cell pointer" field_name="save">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true" on-click="edit_field"></span>
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true" on-click="remove_field"></span>
+                    </div>
+
+                </div>
+            {{/if}}
+
             {{/each}}
         </div>
         </div>

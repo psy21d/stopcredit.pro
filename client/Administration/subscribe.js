@@ -10,4 +10,5 @@ Tracker.autorun(function () {
     Meteor.subscribe("Personal_data");
     Meteor.subscribe("Document_names");
     Meteor.subscribe("Bank_fields");
+    Meteor.subscribe('Information_fields');
 });
