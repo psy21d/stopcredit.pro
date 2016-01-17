@@ -39,21 +39,14 @@ if (Meteor.isClient) {
 
         Information_fields.find().observe({
             added : function(document) {
-                console.log(document);
-
                 ractive_information_fields[document._id] = document;
                 ractive.update();
             },
             changed: function(newDocument, oldDocument) {
-                console.log(oldDocument);
-                console.log(newDocument);
-
                 ractive_information_fields[newDocument._id] = newDocument;
                 ractive.update();
             },
             removed: function(oldDocument) {
-                console.log(oldDocument);
-
                 delete ractive_information_fields[oldDocument._id];
                 ractive.update();
             }
@@ -88,6 +81,7 @@ if (Meteor.isClient) {
                 template : '',
                 manager : Meteor.userId(),
                 need_edit : true,
+                need_insert : true,
                 manager_fio : function() {
                     var fio = Meteor.user().fio;
                     if (!fio) {
@@ -100,58 +94,40 @@ if (Meteor.isClient) {
             ractive.update();
         });
 
-/*
-        ractive.on('add_new_field', function(e) {
-
-            console.log(ractive.get(e.keypath));
-            var fake_id = ractive.get(e.keypath).fake_id;
-            console.log( ractive_information_fields[fake_id] );
-            console.log (fake_id);
-            console.log(e.context);
-
-            var ractive_row = ractive.get(e.keypath);
-            //TODO: Боже царя храни. Где-то потерялись данные, нужно выловить
-
-            Information_fields.insert(e.context,function(err) {
-                if (err) {
-                    console.log(err);
-                    Session.set('administration_error',{source:'Ошибка добавления записи', error: err.toString()});
-                    //ractive.get(e.keypath).need_edit = true;
-                } else {
-                    delete ractive_information_fields[fake_id];
-                }
-                console.log(ractive.get(e.keypath));
-                console.log( ractive_information_fields[fake_id] );
-
-                ractive.set(e.keypath,ractive_row);
-                ractive.update();
-            });
-            console.log(ractive.get(e.keypath));
-        });
-*/
-
         ractive.on('edit_field', function(e) {
             //ractive.get(e.keypath).need_edit = true;
-            e.need_edit = true;
+            e.context.need_edit = true;
             ractive.update();
         });
 
         ractive.on('save_field', function(e) {
-            console.log(e.context);
-            console.log(e.context._id);
 
-           /* Information_fields.update({_id:e.context._id},{ $set: e.context, upsert: true },function(err) {
-                if (err) {
-                    console.log(err);
-                    Session.set('administration_error',{source:'Ошибка обновления записи', error: err});
-                } else {
-                    //ractive.get(e.keypath).need_edit = false;
-                    e.need_edit = false;
-                }
-                ractive.update();
-            });
+            var context = JSON.parse(JSON.stringify(e.context));
 
-            */
+            console.log(context);
+
+            if (e.context.need_insert) {
+                Information_fields.insert(context ,function(err) {
+                    if (err) {
+                        console.log(err);
+                        Session.set('administration_error',{source:'Ошибка добавления записи', error: err.toString()});
+                    } else {
+                        e.context.need_insert = false;
+                        e.context.need_edit = false;
+                    }
+                    ractive.update();
+                });
+            } else {
+               Information_fields.update(context._id, { $set: context},function(err) {
+                    if (err) {
+                        console.log(err);
+                        Session.set('administration_error',{source:'Ошибка обновления записи', error: err.toString()});
+                    } else {
+                        e.context.need_edit = false;
+                    }
+                    ractive.update();
+                });
+            }
 
         });
 
@@ -160,7 +136,7 @@ if (Meteor.isClient) {
                 Information_fields.remove({_id:e.context._id},function() {
                     if (err) {
                         console.log(err);
-                        Session.set('administration_error',{source:'Ошибка удаления записи', error: err});
+                        Session.set('administration_error',{source:'Ошибка удаления записи', error: err.toString()});
                     }
                     ractive.update();
                 });
