@@ -239,9 +239,20 @@ div.item_bordered {
   border-radius: 3px;
   border: 1px dotted #a0a0a0;
 }
+.table-caption{
+  display: table-caption;
+  font-weight: bold;
+  color: 999999;
+}
 
 .table-table {
-   display: table;
+  display: table;
+}
+
+.table-row-group{
+  display: table-row-group;
+  outline: 1px dashed #0b9d00;
+
 }
 
 .table-row {
@@ -267,6 +278,10 @@ div.item_bordered {
   cursor: pointer;
 }
 
-.information_fields_column {
+.information_fields_column, .document_names_column {
   width:220px;
+}
+
+.full-width{
+  width:100%;
 }

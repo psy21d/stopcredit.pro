@@ -1,0 +1,145 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Банки, банковские продукты</h3>
+                </div>
+                <p>На этой странице добавляются, редактируются банки и их продукты (предложения)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class = "container-fluid parameters">
+    <div class = "row">
+        <div class = "col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <div class ="block-flat">
+                <select type="text" value="{{bank}}" on-change="select_bank">
+                    <option value="">...</option>
+                    {{#each banks:_id}}
+                        <option value="{{_id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                &nbsp;&nbsp;&nbsp;Название банка: <input type="text" value="{{newbank_name}}">
+                <span class="glyphicon glyphicon-plus pointer" aria-hidden="true" on-click="add_bank"></span>
+                <span class="glyphicon glyphicon-floppy-disk pointer" aria-hidden="true" on-click="update_bank"></span>
+                <hr>
+                <div class="table-table full-width">
+                    <div class="table-caption">Информация</div>
+                    <div class = "table-row-group">
+                        <div class="table-row">
+                            <div class="table-cell">
+                                Название
+                                <select type="text" value="{{newinfo_name}}">
+                                    <option value="">...</option>
+                                    {{#each information_fields:information_field}}
+                                        <option value="{{name}}">{{description}}</option>
+                                    {{/each}}
+                                </select>
+                                <span class="glyphicon glyphicon-floppy-disk pointer" aria-hidden="true" on-click="save_info"></span>
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">
+                                Значение
+                            </div>
+                            <div class="table-cell">
+                                Описание
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <textarea name="comment" cols="30" rows="3">{{newinfo_value}}</textarea>
+                            </div>
+                            <div class="table-cell">
+                                <textarea name="comment" cols="30" rows="3">{{newinfo_description}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                        {{#each banks[bank].information:info}}
+                        <div class = "table-row-group">
+                            <div class="table-row">
+                                <div class="table-row pointer" on-click="set_info">
+                                    <div class="table-cell">
+                                        {{info}}
+                                    </div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="table-cell">
+                                        {{value}}
+                                    </div>
+                                    <div class="table-cell">
+                                        {{description}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                </div>
+
+                <hr>
+                    <div class="table-table full-width">
+                        <div class="table-caption">Документы</div>
+                        <div class = "table-row-group">
+                            <div class="table-row">
+                                <div class="table-cell">
+                                    Название
+                                    <select type="text" value="{{newdoc_name}}">
+                                        <option value="">...</option>
+                                        {{#each document_names:document_name}}
+                                            <option value="{{name}}">{{description}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <span class="glyphicon glyphicon-floppy-disk pointer" aria-hidden="true" on-click="save_doc"></span>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">
+                                    Описание
+                                </div>
+                                <div class="table-cell">
+                                    Ссылка
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">
+                                    <textarea name="comment" cols="30" rows="3">{{newdoc_description}}</textarea>
+                                </div>
+                                <div class="table-cell">
+                                    <textarea name="comment" cols="30" rows="3">{{newdoc_link}}</textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                    {{#each banks[bank].documents:doc}}
+                    <div class = "table-row-group">
+                        <div class="table-row pointer" on-click="set_doc">
+                            <div class="table-cell">
+                                {{doc}}
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">
+                                {{description}}
+                            </div>
+                            <div class="table-cell">
+                                {{link}}
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+
+                    </div>
+
+            </div>
+
+        </div>
+
+        <div class = "col-lg-8 col-md-8 col-sm-8 col-xs-8">
+            <div class ="block-flat">
+
+            </div>
+        </div>
+    </div>
+</div>
