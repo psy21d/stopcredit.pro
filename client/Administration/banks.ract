@@ -21,10 +21,15 @@
                         <option value="{{_id}}">{{name}}</option>
                     {{/each}}
                 </select>
-                &nbsp;&nbsp;&nbsp;Название банка: <input type="text" value="{{newbank_name}}">
-                <span class="glyphicon glyphicon-plus pointer" aria-hidden="true" on-click="add_bank"></span>
-                <span class="glyphicon glyphicon-floppy-disk pointer" aria-hidden="true" on-click="update_bank"></span>
+                &nbsp;&nbsp;&nbsp;{{#if bank}} Название банка: {{else}} Добавить банк: {{/if}} <input type="text" value="{{newbank_name}}">
+                {{#if bank}}
+                    <span class="glyphicon glyphicon-floppy-disk pointer" aria-hidden="true" on-click="update_bank"></span>
+                {{else}}
+                    <span class="glyphicon glyphicon-plus pointer" aria-hidden="true" on-click="add_bank"></span>
+                {{/if}}
                 <hr>
+                {{#if bank}}
+
                 <div class="table-table full-width">
                     <div class="table-caption">Информация</div>
                     <div class = "table-row-group">
@@ -50,13 +55,14 @@
                         </div>
                         <div class="table-row">
                             <div class="table-cell">
-                                <textarea name="comment" cols="30" rows="3">{{newinfo_value}}</textarea>
+                                <textarea name="comment" cols="30" rows="3" value="{{newinfo_value}}"></textarea>
                             </div>
                             <div class="table-cell">
-                                <textarea name="comment" cols="30" rows="3">{{newinfo_description}}</textarea>
+                                <textarea name="comment" cols="30" rows="3" value="{{newinfo_description}}"></textarea>
                             </div>
                         </div>
                     </div>
+                    {{#if banks[bank]}}
                         {{#each banks[bank].information:info}}
                         <div class = "table-row-group">
                             <div class="table-row">
@@ -76,6 +82,7 @@
                             </div>
                         </div>
                         {{/each}}
+                    {{/if}}
                 </div>
 
                 <hr>
@@ -104,14 +111,14 @@
                             </div>
                             <div class="table-row">
                                 <div class="table-cell">
-                                    <textarea name="comment" cols="30" rows="3">{{newdoc_description}}</textarea>
+                                    <textarea name="comment" cols="30" rows="3" value="{{newdoc_description}}"></textarea>
                                 </div>
                                 <div class="table-cell">
-                                    <textarea name="comment" cols="30" rows="3">{{newdoc_link}}</textarea>
+                                    <textarea name="comment" cols="30" rows="3" value="{{newdoc_link}}"></textarea>
                                 </div>
-
                             </div>
                         </div>
+                    {{#if banks[bank]}}
                     {{#each banks[bank].documents:doc}}
                     <div class = "table-row-group">
                         <div class="table-row pointer" on-click="set_doc">
@@ -129,8 +136,11 @@
                         </div>
                     </div>
                     {{/each}}
+                    {{/if}}
 
                     </div>
+
+                {{/if}}
 
             </div>
 
@@ -138,7 +148,165 @@
 
         <div class = "col-lg-8 col-md-8 col-sm-8 col-xs-8">
             <div class ="block-flat">
+                <select type="text" value="{{product}}" on-change="select_product">
+                    <option value="">...</option>
+                    {{#each products:_id}}
+                        <option value="{{_id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                &nbsp;&nbsp;&nbsp;{{#if product}} Название продукта: {{else}} Добавить продукт: {{/if}} <input type="text" value="{{newproduct_name}}">
+                {{#if product}}
+                    <span class="glyphicon glyphicon-floppy-disk pointer" aria-hidden="true" on-click="update_product"></span>
+                {{else}}
+                    <span class="glyphicon glyphicon-plus pointer" aria-hidden="true" on-click="add_product"></span>
+                {{/if}}
+                <hr>
 
+
+                <div class="table-table full-width">
+                    <div class="table-caption">Продукты (опции по времени)</div>
+                    <div class = "table-row-group">
+                        <div class="table-row">
+                            <div class="table-cell">
+                                Начало
+                            </div>
+                            <div class="table-cell">
+                                Завершение
+                            </div>
+                            <div class="table-cell">
+                                Условия
+                            </div>
+                        </div>
+                        {{#each products.product}}
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <span class="glyphicon glyphicon-floppy-disk pointer" aria-hidden="true" on-click="update_product"></span>
+                                <input type="date" value="{{start}}">
+                            </div>
+                            <div class="table-cell">
+                                <input type="date" value="{{end}}">
+                            </div>
+                            <div class="table-cell">
+                                <textarea name="comment" cols="30" rows="3" value="{{conditions}}"></textarea>
+                            </div>
+                        </div>
+                        {{/each}}
+
+                    </div>
+
+                {{#if product}}
+
+                    <div class="table-table full-width">
+                        <div class="table-caption">Информация</div>
+                        <div class = "table-row-group">
+                            <div class="table-row">
+                                <div class="table-cell">
+                                    Название
+                                    <select type="text" value="{{newproduct_info_name}}">
+                                        <option value="">...</option>
+                                        {{#each information_fields:information_field}}
+                                            <option value="{{name}}">{{description}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <span class="glyphicon glyphicon-floppy-disk pointer" aria-hidden="true" on-click="save_product_info"></span>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">
+                                    Значение
+                                </div>
+                                <div class="table-cell">
+                                    Описание
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">
+                                    <textarea name="comment" cols="30" rows="3" value="{{newproduct_info_value}}"></textarea>
+                                </div>
+                                <div class="table-cell">
+                                    <textarea name="comment" cols="30" rows="3" value="{{newproduct_info_description}}"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        {{#if products[product]}}
+                            {{#each products[product].information:info}}
+                                <div class = "table-row-group">
+                                    <div class="table-row">
+                                        <div class="table-row pointer" on-click="set_p_info">
+                                            <div class="table-cell">
+                                                {{info}}
+                                            </div>
+                                        </div>
+                                        <div class="table-row">
+                                            <div class="table-cell">
+                                                {{value}}
+                                            </div>
+                                            <div class="table-cell">
+                                                {{description}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        {{/if}}
+                    </div>
+
+                    <hr>
+                    <div class="table-table full-width">
+                        <div class="table-caption">Документы</div>
+                        <div class = "table-row-group">
+                            <div class="table-row">
+                                <div class="table-cell">
+                                    Название
+                                    <select type="text" value="{{newproduct_doc_name}}">
+                                        <option value="">...</option>
+                                        {{#each document_names:document_name}}
+                                            <option value="{{name}}">{{description}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <span class="glyphicon glyphicon-floppy-disk pointer" aria-hidden="true" on-click="save_product_doc"></span>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">
+                                    Описание
+                                </div>
+                                <div class="table-cell">
+                                    Ссылка
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="table-cell">
+                                    <textarea name="comment" cols="30" rows="3" value="{{newproduct_doc_description}}"></textarea>
+                                </div>
+                                <div class="table-cell">
+                                    <textarea name="comment" cols="30" rows="3" value="{{newproduct_doc_link}}"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        {{#if products[product]}}
+                            {{#each products[product].documents:doc}}
+                                <div class = "table-row-group">
+                                    <div class="table-row pointer" on-click="set_p_doc">
+                                        <div class="table-cell">
+                                            {{doc}}
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="table-cell">
+                                            {{description}}
+                                        </div>
+                                        <div class="table-cell">
+                                            {{link}}
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        {{/if}}
+
+                    </div>
+
+                {{/if}}
             </div>
         </div>
     </div>
